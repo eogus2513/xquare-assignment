@@ -30,5 +30,3 @@ jwt:
   exp:
     access: ${JWT_EXP_ACCESS}
     refresh: ${JWT_EXP_REFRESH}
-
-
