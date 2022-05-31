@@ -1,4 +1,4 @@
-package com.xquare.assignment.global.config.property;
+package com.xquare.assignment.global.property;
 
 import com.xquare.assignment.global.security.jwt.JwtProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

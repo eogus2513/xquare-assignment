@@ -1,4 +1,4 @@
-package com.xquare.assignment.global.config.redis;
+package com.xquare.assignment.global.redis;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
