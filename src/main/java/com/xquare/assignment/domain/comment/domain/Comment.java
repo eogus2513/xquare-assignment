@@ -1,7 +1,7 @@
 package com.xquare.assignment.domain.comment.domain;
 
 import com.xquare.assignment.domain.post.domain.Post;
-import com.xquare.assignment.domain.user.domain.User;
+import com.xquare.assignment.domain.client.global.domain.Client;
 import com.xquare.assignment.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -39,14 +39,14 @@ public class Comment extends BaseTimeEntity {
     private Post post;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 
     @Builder
-    public Comment(String content, LocalDateTime updatedAt, Post post, User user) {
+    public Comment(String content, LocalDateTime updatedAt, Post post, Client client) {
         this.content = content;
         this.updatedAt = updatedAt;
         this.post = post;
-        this.user = user;
+        this.client = client;
     }
 }
