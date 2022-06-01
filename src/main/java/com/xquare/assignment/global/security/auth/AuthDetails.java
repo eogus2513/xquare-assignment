@@ -1,6 +1,6 @@
 package com.xquare.assignment.global.security.auth;
 
-import com.xquare.assignment.domain.user.domain.User;
+import com.xquare.assignment.domain.client.global.domain.Client;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,12 +15,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthDetails implements UserDetails {
 
-    private final User user;
+    private final Client client;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(user.getRole().name()));
+        authorities.add(new SimpleGrantedAuthority(client.getRole().name()));
         return authorities;
     }
 
@@ -31,7 +31,7 @@ public class AuthDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getAccountId();
+        return client.getAccountId();
     }
 
     @Override
