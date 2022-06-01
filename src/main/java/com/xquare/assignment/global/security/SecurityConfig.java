@@ -1,5 +1,7 @@
 package com.xquare.assignment.global.security;
 
+import com.xquare.assignment.global.security.jwt.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -11,9 +13,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsUtils;
 
+@RequiredArgsConstructor
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
+
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -33,6 +38,9 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/user/**").permitAll()
 
                 .anyRequest().authenticated()
+
+                .and()
+                .apply(new FilterConfig(jwtTokenProvider))
 
                 .and().build();
     }
