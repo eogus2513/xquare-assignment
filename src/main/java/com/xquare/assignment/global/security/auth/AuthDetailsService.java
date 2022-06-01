@@ -1,7 +1,7 @@
 package com.xquare.assignment.global.security.auth;
 
 import com.xquare.assignment.domain.client.global.domain.repository.ClientRepository;
-import com.xquare.assignment.global.exception.UserNotFoundException;
+import com.xquare.assignment.global.exception.ClientNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +21,7 @@ public class AuthDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String accountId) throws UsernameNotFoundException {
         return clientRepository.findByAccountId(accountId)
                 .map(AuthDetails::new)
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+                .orElseThrow(() -> ClientNotFoundException.EXCEPTION);
     }
 
 }

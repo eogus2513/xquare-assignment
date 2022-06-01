@@ -8,7 +8,7 @@ import com.xquare.assignment.domain.client.global.domain.repository.ClientReposi
 import com.xquare.assignment.domain.client.user.exception.UserExistsException;
 import com.xquare.assignment.domain.client.global.dto.request.SignUpRequest;
 import com.xquare.assignment.domain.client.global.exception.PasswordMisMatchException;
-import com.xquare.assignment.global.exception.UserNotFoundException;
+import com.xquare.assignment.global.exception.ClientNotFoundException;
 import com.xquare.assignment.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -42,7 +42,7 @@ public class UserService {
     @Transactional
     public TokenResponse signIn(SignInRequest request) {
         Client user = clientRepository.findByAccountId(request.getAccountId())
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+                .orElseThrow(() -> ClientNotFoundException.EXCEPTION);
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw PasswordMisMatchException.EXCEPTION;
