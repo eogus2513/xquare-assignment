@@ -34,6 +34,7 @@ public class UserService {
                 .name(request.getName())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .profileImageUrl(request.getProfileImageUrl())
+                .role(Role.USER)
                 .build();
         clientRepository.save(user);
     }
