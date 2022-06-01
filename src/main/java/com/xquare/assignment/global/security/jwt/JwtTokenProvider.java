@@ -1,14 +1,25 @@
 package com.xquare.assignment.global.security.jwt;
 
-import com.xquare.assignment.domain.client.global.dto.response.TokenResponse;
 import com.xquare.assignment.domain.client.global.domain.RefreshToken;
 import com.xquare.assignment.domain.client.global.domain.Role;
 import com.xquare.assignment.domain.client.global.domain.repository.RefreshTokenRepository;
+import com.xquare.assignment.domain.client.global.dto.response.TokenResponse;
+import com.xquare.assignment.global.exception.ExpiredJWTException;
+import com.xquare.assignment.global.exception.InvalidJWTException;
+import com.xquare.assignment.global.exception.SignatureJWTException;
+import com.xquare.assignment.global.security.auth.AuthDetailsService;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @RequiredArgsConstructor
@@ -22,6 +33,7 @@ public class JwtTokenProvider {
 
     private final JwtProperty jwtProperty;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final AuthDetailsService authDetailsService;
 
     public TokenResponse generateTokens(String accountId, Role role) {
         String accessToken = generateToken(accountId, role, ACCESS_KEY, jwtProperty.getExp().getAccess());
@@ -48,5 +60,39 @@ public class JwtTokenProvider {
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + exp * 1000))
                 .compact();
+    }
+
+    public String resolveToken(HttpServletRequest request) {
+        String bearer = request.getHeader(HEADER);
+        return parseToken(bearer);
+    }
+
+    public String parseToken(String bearerToken) {
+        if (bearerToken != null && bearerToken.startsWith(PREFIX)) {
+            return bearerToken.replace(PREFIX, "");
+        }
+        return null;
+    }
+
+    public Authentication authentication(String token) {
+        UserDetails userDetails = authDetailsService.loadUserByUsername(getTokenSubject(token));
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+    }
+
+    private String getTokenSubject(String token) {
+        return getTokenBody(token).getSubject();
+    }
+
+    private Claims getTokenBody(String token) {
+        try {
+            return Jwts.parser().setSigningKey(jwtProperty.getSecret())
+                    .parseClaimsJws(token).getBody();
+        } catch (SignatureException e) {
+            throw SignatureJWTException.EXCEPTION;
+        } catch (ExpiredJwtException e) {
+            throw ExpiredJWTException.EXCEPTION;
+        } catch (Exception e) {
+            throw InvalidJWTException.EXCEPTION;
+        }
     }
 }
