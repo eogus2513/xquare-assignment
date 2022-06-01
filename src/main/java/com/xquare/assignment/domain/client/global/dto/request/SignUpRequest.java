@@ -16,7 +16,7 @@ public class SignUpRequest {
     private String accountId;
 
     @NotBlank(message = "password는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,30}$\n",
+    @Pattern(regexp = "(?=.*[a-z])(?=.*[0-9])(?=.*[!#$%&'()*+,./:;<=>?@＼^_`{|}~])[a-zA-Z0-9!#$%&'()*+,./:;<=>?@＼^_`{|}~]{8,30}$",
             message = "password는 영문, 숫자, 특수기호가 포함되어야 하며 8글자 이상 30글자 이하여야 합니다.")
     private String password;
 
