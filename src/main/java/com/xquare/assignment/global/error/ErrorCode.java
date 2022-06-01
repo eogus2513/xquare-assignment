@@ -10,6 +10,9 @@ import lombok.Getter;
 public enum ErrorCode {
 
     PASSWORD_MISMATCH(401, "Password MisMatch"),
+    EXPIRED_JWT(401, "Expired Jwt"),
+    SIGNATURE_JWT(401, "Signature Jwt"),
+    INVALID_JWT(401, "Invalid Jwt"),
 
     USER_NOT_FOUND(404, "User Not Found"),
     ADMIN_NOT_FOUND(404, "Admin Not Found"),
