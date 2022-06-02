@@ -31,8 +31,7 @@ public class CommentService {
 
     @Transactional(readOnly = true)
     public CommentListResponse getCommentList(Long postId) {
-        Post post = postRepository.findById(postId)
-                .orElseThrow(() -> PostNotFoundException.EXCEPTION);
+        Post post = getPost(postId);
 
         List<CommentResponse> commentList = commentRepository.findAllByPostIdOrderByCreatedAtAsc(post.getId())
                 .stream()
@@ -60,8 +59,7 @@ public class CommentService {
     public void createComment(Long postId, String content) {
         Client client = currentFacade.getCurrentClient();
 
-        Post post = postRepository.findById(postId)
-                .orElseThrow(() -> PostNotFoundException.EXCEPTION);
+        Post post = getPost(postId);
 
         commentRepository.save(Comment.builder()
                 .content(content)
@@ -74,8 +72,7 @@ public class CommentService {
     public void updateComment(Long commentId, String content) {
         Client client = currentFacade.getCurrentClient();
 
-        Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> CommentNotFoundException.EXCEPTION);
+        Comment comment = getComment(commentId);
 
         if (!comment.getClient().equals(client)) {
             throw NoPermissionToModifyCommentException.EXCEPTION;
@@ -88,13 +85,22 @@ public class CommentService {
     public void deleteComment(Long commentId) {
         Client client = currentFacade.getCurrentClient();
 
-        Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> CommentNotFoundException.EXCEPTION);
+        Comment comment = getComment(commentId);
 
         if (Role.USER.equals(client.getRole()) && !comment.getClient().equals(client)) {
             throw NoPermissionToDeleteCommentException.EXCEPTION;
         }
 
         commentRepository.delete(comment);
+    }
+
+    private Comment getComment(Long commentId) {
+        return commentRepository.findById(commentId)
+                .orElseThrow(() -> CommentNotFoundException.EXCEPTION);
+    }
+
+    private Post getPost(Long postId) {
+        return postRepository.findById(postId)
+                .orElseThrow(() -> PostNotFoundException.EXCEPTION);
     }
 }
