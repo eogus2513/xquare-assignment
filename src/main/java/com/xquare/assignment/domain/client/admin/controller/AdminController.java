@@ -5,6 +5,7 @@ import com.xquare.assignment.domain.client.common.BaseClient;
 import com.xquare.assignment.domain.client.common.dto.request.SignInRequest;
 import com.xquare.assignment.domain.client.common.dto.response.TokenResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,5 +22,11 @@ public class AdminController implements BaseClient {
     @PostMapping("/admin/token")
     public TokenResponse signIn(@RequestBody @Valid SignInRequest request) {
         return adminService.signIn(request);
+    }
+
+    @Override
+    @PatchMapping("/token")
+    public TokenResponse reissue(String refreshToken) {
+        return adminService.reissue(refreshToken);
     }
 }

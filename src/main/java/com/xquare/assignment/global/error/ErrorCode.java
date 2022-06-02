@@ -22,6 +22,7 @@ public enum ErrorCode {
     ADMIN_NOT_FOUND(404, "Admin Not Found"),
     POST_NOT_FOUND(404, "Post Not Found"),
     COMMENT_NOT_FOUND(404, "Comment Not Found"),
+    REFRESH_TOKEN_NOT_FOUND(404, "RefreshToken Not Found"),
 
     CLIENT_EXISTS(409, "Client Exists"),
 
