@@ -41,5 +41,4 @@ public class UserController implements BaseClient {
         userService.signUp(request);
     }
 
-
 }
