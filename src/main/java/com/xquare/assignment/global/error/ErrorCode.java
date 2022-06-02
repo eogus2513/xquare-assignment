@@ -15,10 +15,13 @@ public enum ErrorCode {
     INVALID_JWT(401, "Invalid Jwt"),
     NO_PERMISSION_TO_MODIFY_POST(401, "No Permission To Modify Post"),
     NO_PERMISSION_TO_DELETE_POST(401, "NO Permission To Delete Post"),
+    NO_PERMISSION_TO_MODIFY_COMMENT(401, "No Permission To Modify Comment"),
+    NO_PERMISSION_TO_DELETE_COMMENT(401, "NO Permission To Delete Comment"),
 
     USER_NOT_FOUND(404, "User Not Found"),
     ADMIN_NOT_FOUND(404, "Admin Not Found"),
     POST_NOT_FOUND(404, "Post Not Found"),
+    COMMENT_NOT_FOUND(404, "Comment Not Found"),
 
     CLIENT_EXISTS(409, "Client Exists"),
 
