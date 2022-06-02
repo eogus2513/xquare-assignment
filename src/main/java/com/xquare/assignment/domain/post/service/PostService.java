@@ -5,6 +5,7 @@ import com.xquare.assignment.domain.client.global.domain.Role;
 import com.xquare.assignment.domain.post.controller.dto.request.CreatePostRequest;
 import com.xquare.assignment.domain.post.controller.dto.request.UpdatePostRequest;
 import com.xquare.assignment.domain.post.controller.dto.response.PostListResponse;
+import com.xquare.assignment.domain.post.controller.dto.response.PostListResponse.ClientResponse;
 import com.xquare.assignment.domain.post.controller.dto.response.PostListResponse.PostResponse;
 import com.xquare.assignment.domain.post.domain.Post;
 import com.xquare.assignment.domain.post.domain.repository.PostRepository;
@@ -31,17 +32,25 @@ public class PostService {
     public PostListResponse getPostList(Pageable pageable) {
         List<PostResponse> postList = postRepository.findAllByOrderByCreatedAtAsc(pageable)
                 .stream()
-                .map(post -> PostResponse.builder()
-                        .postId(post.getId())
-                        .title(post.getTitle())
-                        .content(post.getContent())
-                        .createdAt(post.getCreatedAt())
-                        .updatedAt(post.getUpdatedAt())
-                        .clientId(post.getClientId())
-                        .build())
+                .map(this::buildPostList)
                 .collect(Collectors.toList());
 
         return new PostListResponse(postList);
+    }
+
+    private PostResponse buildPostList(Post post) {
+        return PostResponse.builder()
+                .postId(post.getId())
+                .title(post.getTitle())
+                .content(post.getContent())
+                .createdAt(post.getCreatedAt())
+                .updatedAt(post.getUpdatedAt())
+                .client(ClientResponse.builder()
+                        .clientId(post.getClientId())
+                        .name(post.getClient().getName())
+                        .profileImageUrl(post.getClient().getProfileImageUrl())
+                        .build())
+                .build();
     }
 
     @Transactional

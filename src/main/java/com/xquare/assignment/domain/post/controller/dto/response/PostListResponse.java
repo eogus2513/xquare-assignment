@@ -21,6 +21,14 @@ public class PostListResponse {
         private final String content;
         private final LocalDateTime createdAt;
         private final LocalDateTime updatedAt;
+        private final ClientResponse client;
+    }
+
+    @Getter
+    @Builder
+    public static class ClientResponse {
         private final Long clientId;
+        private final String name;
+        private final String profileImageUrl;
     }
 }
