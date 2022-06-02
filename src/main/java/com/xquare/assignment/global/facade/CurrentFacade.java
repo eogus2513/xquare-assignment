@@ -1,7 +1,7 @@
 package com.xquare.assignment.global.facade;
 
-import com.xquare.assignment.domain.client.global.domain.Client;
-import com.xquare.assignment.domain.client.global.domain.repository.ClientRepository;
+import com.xquare.assignment.domain.client.common.domain.Client;
+import com.xquare.assignment.domain.client.common.domain.repository.ClientRepository;
 import com.xquare.assignment.global.exception.ClientNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;

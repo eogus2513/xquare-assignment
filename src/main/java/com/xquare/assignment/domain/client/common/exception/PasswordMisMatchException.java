@@ -1,4 +1,4 @@
-package com.xquare.assignment.domain.client.global.exception;
+package com.xquare.assignment.domain.client.common.exception;
 
 import com.xquare.assignment.global.error.CustomException;
 import com.xquare.assignment.global.error.ErrorCode;

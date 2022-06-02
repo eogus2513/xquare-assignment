@@ -1,7 +1,7 @@
 package com.xquare.assignment.domain.comment.service;
 
-import com.xquare.assignment.domain.client.global.domain.Client;
-import com.xquare.assignment.domain.client.global.domain.Role;
+import com.xquare.assignment.domain.client.common.domain.Client;
+import com.xquare.assignment.domain.client.common.domain.Role;
 import com.xquare.assignment.domain.comment.controller.dto.response.CommentListResponse;
 import com.xquare.assignment.domain.comment.controller.dto.response.CommentListResponse.ClientResponse;
 import com.xquare.assignment.domain.comment.controller.dto.response.CommentListResponse.CommentResponse;

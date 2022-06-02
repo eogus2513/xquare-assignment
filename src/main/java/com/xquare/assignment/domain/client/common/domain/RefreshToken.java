@@ -1,4 +1,4 @@
-package com.xquare.assignment.domain.client.global.domain;
+package com.xquare.assignment.domain.client.common.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

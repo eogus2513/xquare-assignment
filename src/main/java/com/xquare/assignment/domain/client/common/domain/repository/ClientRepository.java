@@ -1,6 +1,6 @@
-package com.xquare.assignment.domain.client.global.domain.repository;
+package com.xquare.assignment.domain.client.common.domain.repository;
 
-import com.xquare.assignment.domain.client.global.domain.Client;
+import com.xquare.assignment.domain.client.common.domain.Client;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

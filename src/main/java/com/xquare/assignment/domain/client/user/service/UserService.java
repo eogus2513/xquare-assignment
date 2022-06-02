@@ -1,13 +1,13 @@
 package com.xquare.assignment.domain.client.user.service;
 
-import com.xquare.assignment.domain.client.global.dto.request.SignInRequest;
-import com.xquare.assignment.domain.client.global.dto.response.TokenResponse;
-import com.xquare.assignment.domain.client.global.domain.Role;
-import com.xquare.assignment.domain.client.global.domain.Client;
-import com.xquare.assignment.domain.client.global.domain.repository.ClientRepository;
+import com.xquare.assignment.domain.client.common.dto.request.SignInRequest;
+import com.xquare.assignment.domain.client.common.dto.response.TokenResponse;
+import com.xquare.assignment.domain.client.common.domain.Role;
+import com.xquare.assignment.domain.client.common.domain.Client;
+import com.xquare.assignment.domain.client.common.domain.repository.ClientRepository;
 import com.xquare.assignment.domain.client.user.exception.ClientExistsException;
-import com.xquare.assignment.domain.client.global.dto.request.SignUpRequest;
-import com.xquare.assignment.domain.client.global.exception.PasswordMisMatchException;
+import com.xquare.assignment.domain.client.common.dto.request.SignUpRequest;
+import com.xquare.assignment.domain.client.common.exception.PasswordMisMatchException;
 import com.xquare.assignment.global.exception.ClientNotFoundException;
 import com.xquare.assignment.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;

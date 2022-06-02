@@ -1,4 +1,4 @@
-package com.xquare.assignment.domain.client.global.dto.request;
+package com.xquare.assignment.domain.client.common.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

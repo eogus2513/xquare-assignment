@@ -1,7 +1,7 @@
 package com.xquare.assignment.domain.post.service;
 
-import com.xquare.assignment.domain.client.global.domain.Client;
-import com.xquare.assignment.domain.client.global.domain.Role;
+import com.xquare.assignment.domain.client.common.domain.Client;
+import com.xquare.assignment.domain.client.common.domain.Role;
 import com.xquare.assignment.domain.post.controller.dto.request.CreatePostRequest;
 import com.xquare.assignment.domain.post.controller.dto.request.UpdatePostRequest;
 import com.xquare.assignment.domain.post.controller.dto.response.PostListResponse;

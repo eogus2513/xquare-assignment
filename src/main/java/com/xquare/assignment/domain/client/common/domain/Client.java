@@ -1,4 +1,4 @@
-package com.xquare.assignment.domain.client.global.domain;
+package com.xquare.assignment.domain.client.common.domain;
 
 import com.xquare.assignment.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;

@@ -1,6 +1,6 @@
 package com.xquare.assignment.domain.comment.domain;
 
-import com.xquare.assignment.domain.client.global.domain.Client;
+import com.xquare.assignment.domain.client.common.domain.Client;
 import com.xquare.assignment.domain.post.domain.Post;
 import com.xquare.assignment.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;

@@ -1,6 +1,5 @@
-package com.xquare.assignment.domain.client.global.dto.response;
+package com.xquare.assignment.domain.client.common.dto.response;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
