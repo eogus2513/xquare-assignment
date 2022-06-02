@@ -5,6 +5,7 @@ import com.xquare.assignment.domain.post.controller.dto.request.UpdatePostReques
 import com.xquare.assignment.domain.post.controller.dto.response.PostListResponse;
 import com.xquare.assignment.domain.post.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +27,8 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping("/list")
-    public PostListResponse getPostList() {
-        return postService.getPostList();
+    public PostListResponse getPostList(Pageable pageable) {
+        return postService.getPostList(pageable);
     }
 
     @ResponseStatus(HttpStatus.CREATED)

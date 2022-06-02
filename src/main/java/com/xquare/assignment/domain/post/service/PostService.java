@@ -13,6 +13,7 @@ import com.xquare.assignment.domain.post.exception.NoPermissionToModifyPostExcep
 import com.xquare.assignment.domain.post.exception.PostNotFoundException;
 import com.xquare.assignment.global.facade.CurrentFacade;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,8 +28,8 @@ public class PostService {
     private final CurrentFacade currentFacade;
 
     @Transactional(readOnly = true)
-    public PostListResponse getPostList() {
-        List<PostResponse> postList = postRepository.findAll()
+    public PostListResponse getPostList(Pageable pageable) {
+        List<PostResponse> postList = postRepository.findAllByOrderByCreatedAtAsc(pageable)
                 .stream()
                 .map(post -> PostResponse.builder()
                         .postId(post.getId())
