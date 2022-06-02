@@ -1,6 +1,7 @@
 package com.xquare.assignment.domain.post.domain;
 
 import com.xquare.assignment.domain.client.global.domain.Client;
+import com.xquare.assignment.domain.post.controller.dto.request.UpdatePostRequest;
 import com.xquare.assignment.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +38,7 @@ public class Post extends BaseTimeEntity {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
@@ -46,5 +48,14 @@ public class Post extends BaseTimeEntity {
         this.content = content;
         this.updatedAt = updatedAt;
         this.client = client;
+    }
+
+    public Long getClientId() {
+        return this.client.getId();
+    }
+
+    public void updateTitleAndContent(UpdatePostRequest request) {
+        this.title = request.getTitle();
+        this.content = request.getContent();
     }
 }
