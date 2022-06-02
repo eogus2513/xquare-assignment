@@ -13,9 +13,12 @@ public enum ErrorCode {
     EXPIRED_JWT(401, "Expired Jwt"),
     SIGNATURE_JWT(401, "Signature Jwt"),
     INVALID_JWT(401, "Invalid Jwt"),
+    NO_PERMISSION_TO_MODIFY_POST(401, "No Permission To Modify Post"),
+    NO_PERMISSION_TO_DELETE_POST(401, "NO Permission To Delete Post"),
 
     USER_NOT_FOUND(404, "User Not Found"),
     ADMIN_NOT_FOUND(404, "Admin Not Found"),
+    POST_NOT_FOUND(404, "Post Not Found"),
 
     USER_EXISTS(409, "User Exists"),
 
