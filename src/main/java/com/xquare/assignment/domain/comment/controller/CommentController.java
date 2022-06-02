@@ -37,13 +37,13 @@ public class CommentController {
         commentService.createComment(postId, request.getContent());
     }
 
-    @PatchMapping("{comment-id}")
+    @PatchMapping("/{comment-id}")
     public void updateComment(@PathVariable("comment-id") Long commentId,
                               @RequestBody @Valid UpdateCommentRequest request) {
         commentService.updateComment(commentId, request.getContent());
     }
 
-    @DeleteMapping("{comment-id}")
+    @DeleteMapping("/{comment-id}")
     public void deleteComment(@PathVariable("comment-id") Long commentId) {
         commentService.deleteComment(commentId);
     }
