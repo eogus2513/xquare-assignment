@@ -8,18 +8,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
 @RequiredArgsConstructor
+@RequestMapping("/admin")
 @RestController
 public class AdminController implements BaseClient {
 
     private final AdminService adminService;
 
     @Override
-    @PostMapping("/admin/token")
+    @PostMapping("/token")
     public TokenResponse signIn(@RequestBody @Valid SignInRequest request) {
         return adminService.signIn(request);
     }
