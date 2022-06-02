@@ -20,7 +20,7 @@ public enum ErrorCode {
     ADMIN_NOT_FOUND(404, "Admin Not Found"),
     POST_NOT_FOUND(404, "Post Not Found"),
 
-    USER_EXISTS(409, "User Exists"),
+    CLIENT_EXISTS(409, "Client Exists"),
 
     INTERNAL_SERVER_ERROR(500, "Internal Server Error");
 

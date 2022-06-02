@@ -3,12 +3,12 @@ package com.xquare.assignment.domain.client.user.exception;
 import com.xquare.assignment.global.error.CustomException;
 import com.xquare.assignment.global.error.ErrorCode;
 
-public class UserExistsException extends CustomException {
+public class ClientExistsException extends CustomException {
 
     public static final CustomException EXCEPTION =
-            new UserExistsException();
+            new ClientExistsException();
 
-    private UserExistsException() {
-        super(ErrorCode.USER_EXISTS);
+    private ClientExistsException() {
+        super(ErrorCode.CLIENT_EXISTS);
     }
 }

@@ -5,7 +5,7 @@ import com.xquare.assignment.domain.client.global.dto.response.TokenResponse;
 import com.xquare.assignment.domain.client.global.domain.Role;
 import com.xquare.assignment.domain.client.global.domain.Client;
 import com.xquare.assignment.domain.client.global.domain.repository.ClientRepository;
-import com.xquare.assignment.domain.client.user.exception.UserExistsException;
+import com.xquare.assignment.domain.client.user.exception.ClientExistsException;
 import com.xquare.assignment.domain.client.global.dto.request.SignUpRequest;
 import com.xquare.assignment.domain.client.global.exception.PasswordMisMatchException;
 import com.xquare.assignment.global.exception.ClientNotFoundException;
@@ -26,7 +26,7 @@ public class UserService {
     @Transactional
     public void signUp(SignUpRequest request) {
         if (clientRepository.findByAccountId(request.getAccountId()).isPresent()) {
-            throw UserExistsException.EXCEPTION;
+            throw ClientExistsException.EXCEPTION;
         }
 
         Client user = Client.builder()
