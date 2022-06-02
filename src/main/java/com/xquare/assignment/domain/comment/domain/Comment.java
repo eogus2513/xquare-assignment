@@ -1,7 +1,7 @@
 package com.xquare.assignment.domain.comment.domain;
 
-import com.xquare.assignment.domain.post.domain.Post;
 import com.xquare.assignment.domain.client.global.domain.Client;
+import com.xquare.assignment.domain.post.domain.Post;
 import com.xquare.assignment.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -11,6 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,11 +35,11 @@ public class Comment extends BaseTimeEntity {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id", nullable = false)
     private Post post;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
@@ -48,5 +49,9 @@ public class Comment extends BaseTimeEntity {
         this.updatedAt = updatedAt;
         this.post = post;
         this.client = client;
+    }
+
+    public void updateContent(String content) {
+        this.content = content;
     }
 }
