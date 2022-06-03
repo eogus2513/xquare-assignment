@@ -18,8 +18,7 @@ public enum ErrorCode {
     NO_PERMISSION_TO_MODIFY_COMMENT(401, "No Permission To Modify Comment"),
     NO_PERMISSION_TO_DELETE_COMMENT(401, "NO Permission To Delete Comment"),
 
-    USER_NOT_FOUND(404, "User Not Found"),
-    ADMIN_NOT_FOUND(404, "Admin Not Found"),
+    CLIENT_NOT_FOUND(404, "Client Not Found"),
     POST_NOT_FOUND(404, "Post Not Found"),
     COMMENT_NOT_FOUND(404, "Comment Not Found"),
     REFRESH_TOKEN_NOT_FOUND(404, "RefreshToken Not Found"),

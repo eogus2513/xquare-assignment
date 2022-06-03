@@ -1,6 +1,6 @@
 package com.xquare.assignment.global.security.auth;
 
-import com.xquare.assignment.domain.client.common.domain.Client;
+import com.xquare.assignment.domain.auth.common.domain.Client;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

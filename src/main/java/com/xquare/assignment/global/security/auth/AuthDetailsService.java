@@ -1,6 +1,6 @@
 package com.xquare.assignment.global.security.auth;
 
-import com.xquare.assignment.domain.client.common.domain.repository.ClientRepository;
+import com.xquare.assignment.domain.auth.common.domain.repository.ClientRepository;
 import com.xquare.assignment.global.exception.ClientNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -9,6 +9,6 @@ public class ClientNotFoundException extends CustomException {
             new ClientNotFoundException();
 
     private ClientNotFoundException() {
-        super(ErrorCode.USER_NOT_FOUND);
+        super(ErrorCode.CLIENT_NOT_FOUND);
     }
 }
