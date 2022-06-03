@@ -1,7 +1,7 @@
 package com.xquare.assignment.domain.post.service;
 
-import com.xquare.assignment.domain.client.common.domain.Client;
-import com.xquare.assignment.domain.client.common.domain.Role;
+import com.xquare.assignment.domain.auth.common.domain.Client;
+import com.xquare.assignment.domain.auth.common.domain.Role;
 import com.xquare.assignment.domain.post.controller.dto.request.CreatePostRequest;
 import com.xquare.assignment.domain.post.controller.dto.request.UpdatePostRequest;
 import com.xquare.assignment.domain.post.controller.dto.response.PostListResponse;
@@ -30,7 +30,7 @@ public class PostService {
 
     @Transactional(readOnly = true)
     public PostListResponse getPostList(Pageable pageable) {
-        List<PostResponse> postList = postRepository.findAllByOrderByCreatedAtAsc(pageable)
+        List<PostResponse> postList = postRepository.findAllByJoinFetch(pageable)
                 .stream()
                 .map(this::buildPostList)
                 .collect(Collectors.toList());
