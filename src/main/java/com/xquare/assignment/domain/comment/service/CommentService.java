@@ -1,7 +1,7 @@
 package com.xquare.assignment.domain.comment.service;
 
-import com.xquare.assignment.domain.client.common.domain.Client;
-import com.xquare.assignment.domain.client.common.domain.Role;
+import com.xquare.assignment.domain.auth.common.domain.Client;
+import com.xquare.assignment.domain.auth.common.domain.Role;
 import com.xquare.assignment.domain.comment.controller.dto.response.CommentListResponse;
 import com.xquare.assignment.domain.comment.controller.dto.response.CommentListResponse.ClientResponse;
 import com.xquare.assignment.domain.comment.controller.dto.response.CommentListResponse.CommentResponse;
@@ -33,7 +33,7 @@ public class CommentService {
     public CommentListResponse getCommentList(Long postId) {
         Post post = getPost(postId);
 
-        List<CommentResponse> commentList = commentRepository.findAllByPostIdOrderByCreatedAtAsc(post.getId())
+        List<CommentResponse> commentList = commentRepository.findAllByJoinFetch(post.getId())
                 .stream()
                 .map(this::buildCommentList)
                 .collect(Collectors.toList());
@@ -48,9 +48,9 @@ public class CommentService {
                 .createdAt(comment.getCreatedAt())
                 .updatedAt(comment.getUpdatedAt())
                 .client(ClientResponse.builder()
-                        .clientId(comment.getClient().getId())
-                        .name(comment.getClient().getName())
-                        .profileImageUrl(comment.getClient().getProfileImageUrl())
+                        .clientId(comment.getClientId())
+                        .name(comment.getClientName())
+                        .profileImageUrl(comment.getClientProfileImageUrl())
                         .build())
                 .build();
     }

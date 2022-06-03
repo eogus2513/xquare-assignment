@@ -1,6 +1,6 @@
 package com.xquare.assignment.domain.comment.domain;
 
-import com.xquare.assignment.domain.client.common.domain.Client;
+import com.xquare.assignment.domain.auth.common.domain.Client;
 import com.xquare.assignment.domain.post.domain.Post;
 import com.xquare.assignment.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
@@ -53,5 +53,17 @@ public class Comment extends BaseTimeEntity {
 
     public void updateContent(String content) {
         this.content = content;
+    }
+
+    public Long getClientId() {
+        return this.client.getId();
+    }
+
+    public String getClientName() {
+        return this.client.getName();
+    }
+
+    public String getClientProfileImageUrl() {
+        return this.client.getProfileImageUrl();
     }
 }
