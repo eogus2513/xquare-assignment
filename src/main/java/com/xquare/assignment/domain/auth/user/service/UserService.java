@@ -6,7 +6,7 @@ import com.xquare.assignment.domain.auth.common.domain.repository.AuthRepository
 import com.xquare.assignment.domain.auth.common.dto.request.SignInRequest;
 import com.xquare.assignment.domain.auth.common.dto.request.SignUpRequest;
 import com.xquare.assignment.domain.auth.common.dto.response.TokenResponse;
-import com.xquare.assignment.domain.auth.user.exception.ClientExistsException;
+import com.xquare.assignment.domain.auth.user.exception.AuthExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class UserService {
     @Transactional
     public void signUp(SignUpRequest request) {
         if (authRepository.existsByAccountId(request.getAccountId())) {
-            throw ClientExistsException.EXCEPTION;
+            throw AuthExistsException.EXCEPTION;
         }
 
         Auth auth = Auth.builder()

@@ -17,7 +17,7 @@ public class CommentListResponse {
     @Builder
     public static class CommentResponse {
         private final Long commentId;
-        private final String content;
+        private final String comment;
         private final LocalDateTime createdAt;
         private final LocalDateTime updatedAt;
         private final ClientResponse client;

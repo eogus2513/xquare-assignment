@@ -44,7 +44,7 @@ public class CommentService {
     private CommentResponse buildCommentList(Comment comment) {
         return CommentResponse.builder()
                 .commentId(comment.getId())
-                .content(comment.getContent())
+                .comment(comment.getComment())
                 .createdAt(comment.getCreatedAt())
                 .updatedAt(comment.getUpdatedAt())
                 .client(ClientResponse.builder()
@@ -56,13 +56,13 @@ public class CommentService {
     }
 
     @Transactional
-    public void createComment(Long postId, String content) {
+    public void createComment(Long postId, String comment) {
         Auth auth = currentFacade.getCurrentAuth();
 
         Post post = getPost(postId);
 
         commentRepository.save(Comment.builder()
-                .content(content)
+                .comment(comment)
                 .post(post)
                 .auth(auth)
                 .build());

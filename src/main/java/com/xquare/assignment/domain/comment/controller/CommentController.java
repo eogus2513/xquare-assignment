@@ -34,7 +34,7 @@ public class CommentController {
     @PostMapping("/{post-id}")
     public void createComment(@PathVariable("post-id") Long postId,
                               @RequestBody @Valid CreateCommentRequest request) {
-        commentService.createComment(postId, request.getContent());
+        commentService.createComment(postId, request.getComment());
     }
 
     @PatchMapping("/{comment-id}")

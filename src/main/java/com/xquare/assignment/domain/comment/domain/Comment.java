@@ -29,7 +29,7 @@ public class Comment extends BaseTimeEntity {
     private Long id;
 
     @Column(length = 500, nullable = false)
-    private String content;
+    private String comment;
 
     @LastModifiedDate
     @Column(nullable = false)
@@ -44,15 +44,15 @@ public class Comment extends BaseTimeEntity {
     private Auth auth;
 
     @Builder
-    public Comment(String content, LocalDateTime updatedAt, Post post, Auth auth) {
-        this.content = content;
+    public Comment(String comment, LocalDateTime updatedAt, Post post, Auth auth) {
+        this.comment = comment;
         this.updatedAt = updatedAt;
         this.post = post;
         this.auth = auth;
     }
 
-    public void updateContent(String content) {
-        this.content = content;
+    public void updateContent(String comment) {
+        this.comment = comment;
     }
 
     public Long getClientId() {
