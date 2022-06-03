@@ -24,15 +24,15 @@ public class TokenService implements AdminAuthService, UserAuthService {
 
     @Override
     public TokenResponse adminAuth(SignInRequest request) {
-        return generateToken(request, Role.ADMIN);
+        return signIn(request, Role.ADMIN);
     }
 
     @Override
     public TokenResponse userAuth(SignInRequest request) {
-        return generateToken(request, Role.USER);
+        return signIn(request, Role.USER);
     }
 
-    private TokenResponse generateToken(SignInRequest request, Role role) {
+    private TokenResponse signIn(SignInRequest request, Role role) {
         Client client = clientRepository.findByAccountId(request.getAccountId())
                 .orElseThrow(() -> ClientNotFoundException.EXCEPTION);
 
