@@ -22,15 +22,15 @@ public class ReissueService implements AdminReissueService, UserReissueService {
 
     @Override
     public TokenResponse adminReissue(String refreshToken) {
-        return reissue(refreshToken, Role.ADMIN);
+        return reIssue(refreshToken, Role.ADMIN);
     }
 
     @Override
     public TokenResponse userReissue(String refreshToken) {
-        return reissue(refreshToken, Role.USER);
+        return reIssue(refreshToken, Role.USER);
     }
 
-    private TokenResponse reissue(String refreshToken, Role role) {
+    private TokenResponse reIssue(String refreshToken, Role role) {
         RefreshToken redisRefreshToken = refreshTokenRepository.findByToken(refreshToken)
                 .orElseThrow(() -> RefreshTokenNotFoundException.EXCEPTION);
 
