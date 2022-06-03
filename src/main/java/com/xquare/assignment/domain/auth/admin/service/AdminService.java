@@ -18,7 +18,7 @@ public class AdminService {
         return adminAuthService.adminAuth(request);
     }
 
-    public TokenResponse reissue(String refreshToken) {
+    public TokenResponse reIssue(String refreshToken) {
         return adminReissueService.adminReissue(refreshToken);
     }
 }

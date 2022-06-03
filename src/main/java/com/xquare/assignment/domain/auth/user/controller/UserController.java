@@ -32,7 +32,7 @@ public class UserController implements BaseClient {
     @Override
     @PatchMapping("/token")
     public TokenResponse reissue(String refreshToken) {
-        return userService.reissue(refreshToken);
+        return userService.reIssue(refreshToken);
     }
 
     @ResponseStatus(HttpStatus.CREATED)

@@ -29,6 +29,6 @@ public class AdminController implements BaseClient {
     @Override
     @PatchMapping("/token")
     public TokenResponse reissue(String refreshToken) {
-        return adminService.reissue(refreshToken);
+        return adminService.reIssue(refreshToken);
     }
 }

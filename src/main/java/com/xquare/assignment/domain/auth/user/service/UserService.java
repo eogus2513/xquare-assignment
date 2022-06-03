@@ -42,7 +42,7 @@ public class UserService {
         return userAuthService.userAuth(request);
     }
 
-    public TokenResponse reissue(String refreshToken) {
+    public TokenResponse reIssue(String refreshToken) {
         return userReissueService.userReissue(refreshToken);
     }
 }
