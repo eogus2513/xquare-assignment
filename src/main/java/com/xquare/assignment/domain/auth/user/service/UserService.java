@@ -42,6 +42,7 @@ public class UserService {
         return userAuthService.userAuth(request);
     }
 
+    @Transactional
     public TokenResponse reIssue(String refreshToken) {
         return userReissueService.userReissue(refreshToken);
     }

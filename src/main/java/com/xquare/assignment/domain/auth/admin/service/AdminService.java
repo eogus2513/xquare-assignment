@@ -18,6 +18,7 @@ public class AdminService {
         return adminAuthService.adminAuth(request);
     }
 
+    @Transactional
     public TokenResponse reIssue(String refreshToken) {
         return adminReissueService.adminReissue(refreshToken);
     }
