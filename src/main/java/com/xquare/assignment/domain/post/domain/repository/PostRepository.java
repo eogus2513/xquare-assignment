@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface PostRepository extends CrudRepository<Post, Long> {
 
-    @Query("select p from Post p join fetch p.client order by p.createdAt")
+    @Query("select p from Post p join fetch p.auth order by p.createdAt")
     List<Post> findAllByJoinFetch(Pageable pageable);
 }

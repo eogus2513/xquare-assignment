@@ -40,7 +40,7 @@ public class CommentController {
     @PatchMapping("/{comment-id}")
     public void updateComment(@PathVariable("comment-id") Long commentId,
                               @RequestBody @Valid UpdateCommentRequest request) {
-        commentService.updateComment(commentId, request.getContent());
+        commentService.updateComment(commentId, request.getComment());
     }
 
     @DeleteMapping("/{comment-id}")

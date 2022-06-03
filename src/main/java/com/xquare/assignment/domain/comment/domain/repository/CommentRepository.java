@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface CommentRepository extends CrudRepository<Comment, Long> {
 
-    @Query("select c from Comment c join fetch c.client where c.post.id = :postId order by c.createdAt")
+    @Query("select c from Comment c join fetch c.auth where c.post.id = :postId order by c.createdAt")
     List<Comment> findAllByJoinFetch(Long postId);
 }

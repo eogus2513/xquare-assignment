@@ -69,16 +69,16 @@ public class CommentService {
     }
 
     @Transactional
-    public void updateComment(Long commentId, String content) {
+    public void updateComment(Long commentId, String comment) {
         Auth auth = currentFacade.getCurrentAuth();
 
-        Comment comment = getComment(commentId);
+        Comment dbComment = getComment(commentId);
 
-        if (!comment.getAuth().equals(auth)) {
+        if (!dbComment.getAuth().equals(auth)) {
             throw NoPermissionToModifyCommentException.EXCEPTION;
         }
 
-        comment.updateContent(content);
+        dbComment.updateContent(comment);
     }
 
     @Transactional
