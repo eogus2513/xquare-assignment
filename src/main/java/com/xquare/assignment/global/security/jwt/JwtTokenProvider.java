@@ -1,9 +1,9 @@
 package com.xquare.assignment.global.security.jwt;
 
-import com.xquare.assignment.domain.client.common.domain.RefreshToken;
-import com.xquare.assignment.domain.client.common.domain.Role;
-import com.xquare.assignment.domain.client.common.domain.repository.RefreshTokenRepository;
-import com.xquare.assignment.domain.client.common.dto.response.TokenResponse;
+import com.xquare.assignment.domain.auth.common.domain.RefreshToken;
+import com.xquare.assignment.domain.auth.common.domain.Role;
+import com.xquare.assignment.domain.auth.common.domain.repository.RefreshTokenRepository;
+import com.xquare.assignment.domain.auth.common.dto.response.TokenResponse;
 import com.xquare.assignment.global.exception.ExpiredJWTException;
 import com.xquare.assignment.global.exception.InvalidJWTException;
 import com.xquare.assignment.global.exception.SignatureJWTException;
