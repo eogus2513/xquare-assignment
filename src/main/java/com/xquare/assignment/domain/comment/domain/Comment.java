@@ -1,6 +1,6 @@
 package com.xquare.assignment.domain.comment.domain;
 
-import com.xquare.assignment.domain.auth.common.domain.Client;
+import com.xquare.assignment.domain.auth.common.domain.Auth;
 import com.xquare.assignment.domain.post.domain.Post;
 import com.xquare.assignment.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
@@ -40,15 +40,15 @@ public class Comment extends BaseTimeEntity {
     private Post post;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id", nullable = false)
-    private Client client;
+    @JoinColumn(name = "auth_id", nullable = false)
+    private Auth auth;
 
     @Builder
-    public Comment(String content, LocalDateTime updatedAt, Post post, Client client) {
+    public Comment(String content, LocalDateTime updatedAt, Post post, Auth auth) {
         this.content = content;
         this.updatedAt = updatedAt;
         this.post = post;
-        this.client = client;
+        this.auth = auth;
     }
 
     public void updateContent(String content) {
@@ -56,14 +56,14 @@ public class Comment extends BaseTimeEntity {
     }
 
     public Long getClientId() {
-        return this.client.getId();
+        return this.auth.getId();
     }
 
     public String getClientName() {
-        return this.client.getName();
+        return this.auth.getName();
     }
 
     public String getClientProfileImageUrl() {
-        return this.client.getProfileImageUrl();
+        return this.auth.getProfileImageUrl();
     }
 }

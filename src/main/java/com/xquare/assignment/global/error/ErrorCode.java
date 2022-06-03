@@ -18,12 +18,12 @@ public enum ErrorCode {
     NO_PERMISSION_TO_MODIFY_COMMENT(401, "No Permission To Modify Comment"),
     NO_PERMISSION_TO_DELETE_COMMENT(401, "NO Permission To Delete Comment"),
 
-    CLIENT_NOT_FOUND(404, "Client Not Found"),
+    AUTH_NOT_FOUND(404, "Auth Not Found"),
     POST_NOT_FOUND(404, "Post Not Found"),
     COMMENT_NOT_FOUND(404, "Comment Not Found"),
     REFRESH_TOKEN_NOT_FOUND(404, "RefreshToken Not Found"),
 
-    CLIENT_EXISTS(409, "Client Exists"),
+    AUTH_EXISTS(409, "Auth Exists"),
 
     INTERNAL_SERVER_ERROR(500, "Internal Server Error");
 

@@ -1,8 +1,8 @@
 package com.xquare.assignment.global.facade;
 
-import com.xquare.assignment.domain.auth.common.domain.Client;
-import com.xquare.assignment.domain.auth.common.domain.repository.ClientRepository;
-import com.xquare.assignment.global.exception.ClientNotFoundException;
+import com.xquare.assignment.domain.auth.common.domain.Auth;
+import com.xquare.assignment.domain.auth.common.domain.repository.AuthRepository;
+import com.xquare.assignment.global.exception.AuthNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class CurrentFacade {
 
-    private final ClientRepository clientRepository;
+    private final AuthRepository authRepository;
 
-    public Client getCurrentClient() {
+    public Auth getCurrentAuth() {
         String accountId = SecurityContextHolder.getContext().getAuthentication().getName();
-        return clientRepository.findByAccountId(accountId)
-                .orElseThrow(() -> ClientNotFoundException.EXCEPTION);
+        return authRepository.findByAccountId(accountId)
+                .orElseThrow(() -> AuthNotFoundException.EXCEPTION);
     }
 }

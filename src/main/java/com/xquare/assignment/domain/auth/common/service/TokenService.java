@@ -1,14 +1,14 @@
 package com.xquare.assignment.domain.auth.common.service;
 
 import com.xquare.assignment.domain.auth.admin.service.AdminAuthService;
-import com.xquare.assignment.domain.auth.common.domain.Client;
+import com.xquare.assignment.domain.auth.common.domain.Auth;
 import com.xquare.assignment.domain.auth.common.domain.Role;
-import com.xquare.assignment.domain.auth.common.domain.repository.ClientRepository;
+import com.xquare.assignment.domain.auth.common.domain.repository.AuthRepository;
 import com.xquare.assignment.domain.auth.common.dto.request.SignInRequest;
 import com.xquare.assignment.domain.auth.common.dto.response.TokenResponse;
 import com.xquare.assignment.domain.auth.common.exception.PasswordMisMatchException;
 import com.xquare.assignment.domain.auth.user.service.UserAuthService;
-import com.xquare.assignment.global.exception.ClientNotFoundException;
+import com.xquare.assignment.global.exception.AuthNotFoundException;
 import com.xquare.assignment.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TokenService implements AdminAuthService, UserAuthService {
 
-    private final ClientRepository clientRepository;
+    private final AuthRepository authRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -33,10 +33,10 @@ public class TokenService implements AdminAuthService, UserAuthService {
     }
 
     private TokenResponse signIn(SignInRequest request, Role role) {
-        Client client = clientRepository.findByAccountId(request.getAccountId())
-                .orElseThrow(() -> ClientNotFoundException.EXCEPTION);
+        Auth auth = authRepository.findByAccountId(request.getAccountId())
+                .orElseThrow(() -> AuthNotFoundException.EXCEPTION);
 
-        if (!passwordEncoder.matches(request.getPassword(), client.getPassword())) {
+        if (!passwordEncoder.matches(request.getPassword(), auth.getPassword())) {
             throw PasswordMisMatchException.EXCEPTION;
         }
 

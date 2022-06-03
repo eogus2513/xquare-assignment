@@ -1,6 +1,6 @@
 package com.xquare.assignment.domain.post.domain;
 
-import com.xquare.assignment.domain.auth.common.domain.Client;
+import com.xquare.assignment.domain.auth.common.domain.Auth;
 import com.xquare.assignment.domain.comment.domain.Comment;
 import com.xquare.assignment.domain.post.controller.dto.request.UpdatePostRequest;
 import com.xquare.assignment.global.entity.BaseTimeEntity;
@@ -43,22 +43,22 @@ public class Post extends BaseTimeEntity {
     private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id", nullable = false)
-    private Client client;
+    @JoinColumn(name = "auth_id", nullable = false)
+    private Auth auth;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
     @Builder
-    public Post(String title, String content, LocalDateTime updatedAt, Client client) {
+    public Post(String title, String content, LocalDateTime updatedAt, Auth auth) {
         this.title = title;
         this.content = content;
         this.updatedAt = updatedAt;
-        this.client = client;
+        this.auth = auth;
     }
 
     public Long getClientId() {
-        return this.client.getId();
+        return this.auth.getId();
     }
 
     public void updateTitleAndContent(UpdatePostRequest request) {

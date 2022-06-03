@@ -3,12 +3,12 @@ package com.xquare.assignment.global.exception;
 import com.xquare.assignment.global.error.CustomException;
 import com.xquare.assignment.global.error.ErrorCode;
 
-public class ClientNotFoundException extends CustomException {
+public class AuthNotFoundException extends CustomException {
 
     public static final CustomException EXCEPTION =
-            new ClientNotFoundException();
+            new AuthNotFoundException();
 
-    private ClientNotFoundException() {
-        super(ErrorCode.CLIENT_NOT_FOUND);
+    private AuthNotFoundException() {
+        super(ErrorCode.AUTH_NOT_FOUND);
     }
 }

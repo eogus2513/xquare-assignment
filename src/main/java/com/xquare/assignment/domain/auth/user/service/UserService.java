@@ -1,8 +1,8 @@
 package com.xquare.assignment.domain.auth.user.service;
 
-import com.xquare.assignment.domain.auth.common.domain.Client;
+import com.xquare.assignment.domain.auth.common.domain.Auth;
 import com.xquare.assignment.domain.auth.common.domain.Role;
-import com.xquare.assignment.domain.auth.common.domain.repository.ClientRepository;
+import com.xquare.assignment.domain.auth.common.domain.repository.AuthRepository;
 import com.xquare.assignment.domain.auth.common.dto.request.SignInRequest;
 import com.xquare.assignment.domain.auth.common.dto.request.SignUpRequest;
 import com.xquare.assignment.domain.auth.common.dto.response.TokenResponse;
@@ -16,25 +16,25 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserService {
 
-    private final ClientRepository clientRepository;
+    private final AuthRepository authRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserAuthService userAuthService;
     private final UserReissueService userReissueService;
 
     @Transactional
     public void signUp(SignUpRequest request) {
-        if (clientRepository.existsByAccountId(request.getAccountId())) {
+        if (authRepository.existsByAccountId(request.getAccountId())) {
             throw ClientExistsException.EXCEPTION;
         }
 
-        Client user = Client.builder()
+        Auth auth = Auth.builder()
                 .accountId(request.getAccountId())
                 .name(request.getName())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .profileImageUrl(request.getProfileImageUrl())
                 .role(Role.USER)
                 .build();
-        clientRepository.save(user);
+        authRepository.save(auth);
     }
 
     @Transactional

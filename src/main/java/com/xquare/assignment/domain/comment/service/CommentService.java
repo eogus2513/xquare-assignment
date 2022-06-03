@@ -1,6 +1,6 @@
 package com.xquare.assignment.domain.comment.service;
 
-import com.xquare.assignment.domain.auth.common.domain.Client;
+import com.xquare.assignment.domain.auth.common.domain.Auth;
 import com.xquare.assignment.domain.auth.common.domain.Role;
 import com.xquare.assignment.domain.comment.controller.dto.response.CommentListResponse;
 import com.xquare.assignment.domain.comment.controller.dto.response.CommentListResponse.ClientResponse;
@@ -57,24 +57,24 @@ public class CommentService {
 
     @Transactional
     public void createComment(Long postId, String content) {
-        Client client = currentFacade.getCurrentClient();
+        Auth auth = currentFacade.getCurrentAuth();
 
         Post post = getPost(postId);
 
         commentRepository.save(Comment.builder()
                 .content(content)
                 .post(post)
-                .client(client)
+                .auth(auth)
                 .build());
     }
 
     @Transactional
     public void updateComment(Long commentId, String content) {
-        Client client = currentFacade.getCurrentClient();
+        Auth auth = currentFacade.getCurrentAuth();
 
         Comment comment = getComment(commentId);
 
-        if (!comment.getClient().equals(client)) {
+        if (!comment.getAuth().equals(auth)) {
             throw NoPermissionToModifyCommentException.EXCEPTION;
         }
 
@@ -83,11 +83,11 @@ public class CommentService {
 
     @Transactional
     public void deleteComment(Long commentId) {
-        Client client = currentFacade.getCurrentClient();
+        Auth auth = currentFacade.getCurrentAuth();
 
         Comment comment = getComment(commentId);
 
-        if (Role.USER.equals(client.getRole()) && !comment.getClient().equals(client)) {
+        if (Role.USER.equals(auth.getRole()) && !comment.getAuth().equals(auth)) {
             throw NoPermissionToDeleteCommentException.EXCEPTION;
         }
 

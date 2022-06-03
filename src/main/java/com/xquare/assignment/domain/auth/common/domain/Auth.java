@@ -17,7 +17,7 @@ import javax.persistence.Id;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Client extends BaseTimeEntity {
+public class Auth extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +40,7 @@ public class Client extends BaseTimeEntity {
     private Role role;
 
     @Builder
-    public Client(String accountId, String password, String name, String profileImageUrl, Role role) {
+    public Auth(String accountId, String password, String name, String profileImageUrl, Role role) {
         this.accountId = accountId;
         this.password = password;
         this.name = name;

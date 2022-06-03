@@ -1,6 +1,6 @@
 package com.xquare.assignment.domain.post.service;
 
-import com.xquare.assignment.domain.auth.common.domain.Client;
+import com.xquare.assignment.domain.auth.common.domain.Auth;
 import com.xquare.assignment.domain.auth.common.domain.Role;
 import com.xquare.assignment.domain.post.controller.dto.request.CreatePostRequest;
 import com.xquare.assignment.domain.post.controller.dto.request.UpdatePostRequest;
@@ -47,31 +47,31 @@ public class PostService {
                 .updatedAt(post.getUpdatedAt())
                 .client(ClientResponse.builder()
                         .clientId(post.getClientId())
-                        .name(post.getClient().getName())
-                        .profileImageUrl(post.getClient().getProfileImageUrl())
+                        .name(post.getAuth().getName())
+                        .profileImageUrl(post.getAuth().getProfileImageUrl())
                         .build())
                 .build();
     }
 
     @Transactional
     public void createPost(CreatePostRequest request) {
-        Client client = currentFacade.getCurrentClient();
+        Auth auth = currentFacade.getCurrentAuth();
 
         Post post = Post.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
-                .client(client)
+                .auth(auth)
                 .build();
         postRepository.save(post);
     }
 
     @Transactional
     public void updatePost(UpdatePostRequest request) {
-        Client client = currentFacade.getCurrentClient();
+        Auth auth = currentFacade.getCurrentAuth();
 
         Post post = getPost(request.getPostId());
 
-        if (!post.getClientId().equals(client.getId())) {
+        if (!post.getClientId().equals(auth.getId())) {
             throw NoPermissionToModifyPostException.EXCEPTION;
         }
 
@@ -80,11 +80,11 @@ public class PostService {
 
     @Transactional
     public void deletePost(Long postId) {
-        Client client = currentFacade.getCurrentClient();
+        Auth auth = currentFacade.getCurrentAuth();
 
         Post post = getPost(postId);
 
-        if (Role.USER.equals(client.getRole()) && !post.getClientId().equals(client.getId())) {
+        if (Role.USER.equals(auth.getRole()) && !post.getClientId().equals(auth.getId())) {
             throw NoPermissionToDeletePostException.EXCEPTION;
         }
 
