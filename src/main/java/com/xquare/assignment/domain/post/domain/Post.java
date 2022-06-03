@@ -1,6 +1,6 @@
 package com.xquare.assignment.domain.post.domain;
 
-import com.xquare.assignment.domain.client.common.domain.Client;
+import com.xquare.assignment.domain.auth.common.domain.Client;
 import com.xquare.assignment.domain.post.controller.dto.request.UpdatePostRequest;
 import com.xquare.assignment.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
