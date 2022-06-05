@@ -5,8 +5,10 @@ import com.xquare.assignment.domain.auth.common.domain.RefreshToken;
 import com.xquare.assignment.domain.auth.common.domain.Role;
 import com.xquare.assignment.domain.auth.common.domain.repository.RefreshTokenRepository;
 import com.xquare.assignment.domain.auth.common.dto.response.TokenResponse;
+import com.xquare.assignment.domain.auth.common.exception.InvalidRefreshTokenException;
 import com.xquare.assignment.domain.auth.common.exception.RefreshTokenNotFoundException;
 import com.xquare.assignment.domain.auth.user.service.UserReissueService;
+import com.xquare.assignment.global.exception.InvalidJWTException;
 import com.xquare.assignment.global.security.jwt.JwtProperty;
 import com.xquare.assignment.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +33,12 @@ public class ReissueService implements AdminReissueService, UserReissueService {
     }
 
     private TokenResponse reIssue(String refreshToken, Role role) {
-        RefreshToken redisRefreshToken = refreshTokenRepository.findByToken(refreshToken)
+        String parseToken = jwtTokenProvider.parseToken(refreshToken);
+        if (parseToken == null) {
+            throw InvalidRefreshTokenException.EXCEPTION;
+        }
+
+        RefreshToken redisRefreshToken = refreshTokenRepository.findByToken(parseToken)
                 .orElseThrow(() -> RefreshTokenNotFoundException.EXCEPTION);
 
         TokenResponse tokens = jwtTokenProvider.generateTokens(redisRefreshToken.getAccountId(), role);
