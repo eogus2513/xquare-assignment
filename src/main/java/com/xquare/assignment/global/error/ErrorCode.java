@@ -17,6 +17,7 @@ public enum ErrorCode {
     NO_PERMISSION_TO_DELETE_POST(401, "NO Permission To Delete Post"),
     NO_PERMISSION_TO_MODIFY_COMMENT(401, "No Permission To Modify Comment"),
     NO_PERMISSION_TO_DELETE_COMMENT(401, "NO Permission To Delete Comment"),
+    INVALID_REFRESH_TOKEN(401, "Invalid Refresh Token"),
 
     AUTH_NOT_FOUND(404, "Auth Not Found"),
     POST_NOT_FOUND(404, "Post Not Found"),
