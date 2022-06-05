@@ -14,9 +14,9 @@ public enum ErrorCode {
     SIGNATURE_JWT(401, "Signature Jwt"),
     INVALID_JWT(401, "Invalid Jwt"),
     NO_PERMISSION_TO_MODIFY_POST(401, "No Permission To Modify Post"),
-    NO_PERMISSION_TO_DELETE_POST(401, "NO Permission To Delete Post"),
+    NO_PERMISSION_TO_DELETE_POST(401, "No Permission To Delete Post"),
     NO_PERMISSION_TO_MODIFY_COMMENT(401, "No Permission To Modify Comment"),
-    NO_PERMISSION_TO_DELETE_COMMENT(401, "NO Permission To Delete Comment"),
+    NO_PERMISSION_TO_DELETE_COMMENT(401, "No Permission To Delete Comment"),
     INVALID_REFRESH_TOKEN(401, "Invalid Refresh Token"),
 
     AUTH_NOT_FOUND(404, "Auth Not Found"),
