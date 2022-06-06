@@ -39,7 +39,7 @@ public class GlobalExceptionHandler {
                 .messages(errorsList)
                 .build();
 
-        return new ResponseEntity<BindErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
 }
