@@ -37,9 +37,10 @@ public class PostController {
         postService.createPost(request);
     }
 
-    @PatchMapping
-    public void updatePost(@RequestBody @Valid UpdatePostRequest request) {
-        postService.updatePost(request);
+    @PatchMapping("/{post-id}")
+    public void updatePost(@PathVariable("post-id") Long postId,
+                           @RequestBody @Valid UpdatePostRequest request) {
+        postService.updatePost(postId, request);
     }
 
     @DeleteMapping("/{post-id}")

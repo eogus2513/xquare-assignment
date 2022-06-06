@@ -66,10 +66,10 @@ public class PostService {
     }
 
     @Transactional
-    public void updatePost(UpdatePostRequest request) {
+    public void updatePost(Long postId, UpdatePostRequest request) {
         Auth auth = currentFacade.getCurrentAuth();
 
-        Post post = getPost(request.getPostId());
+        Post post = getPost(postId);
 
         if (!post.getClientId().equals(auth.getId())) {
             throw NoPermissionToModifyPostException.EXCEPTION;
