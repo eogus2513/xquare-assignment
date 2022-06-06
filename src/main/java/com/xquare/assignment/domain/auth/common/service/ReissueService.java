@@ -8,7 +8,6 @@ import com.xquare.assignment.domain.auth.common.dto.response.TokenResponse;
 import com.xquare.assignment.domain.auth.common.exception.InvalidRefreshTokenException;
 import com.xquare.assignment.domain.auth.common.exception.RefreshTokenNotFoundException;
 import com.xquare.assignment.domain.auth.user.service.UserReissueService;
-import com.xquare.assignment.global.exception.InvalidJWTException;
 import com.xquare.assignment.global.security.jwt.JwtProperty;
 import com.xquare.assignment.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
