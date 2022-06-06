@@ -78,7 +78,7 @@ public class CommentService {
             throw NoPermissionToModifyCommentException.EXCEPTION;
         }
 
-        dbComment.updateContent(comment);
+        dbComment.updateComment(comment);
     }
 
     @Transactional

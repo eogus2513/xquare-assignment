@@ -51,7 +51,7 @@ public class Comment extends BaseTimeEntity {
         this.auth = auth;
     }
 
-    public void updateContent(String comment) {
+    public void updateComment(String comment) {
         this.comment = comment;
     }
 
