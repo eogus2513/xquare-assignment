@@ -23,7 +23,7 @@ public class UserService {
 
     @Transactional
     public void signUp(SignUpRequest request) {
-        if (authRepository.existsByAccountId(request.getAccountId())) {
+        if (Boolean.TRUE.equals(authRepository.existsByAccountId(request.getAccountId()))) {
             throw AuthExistsException.EXCEPTION;
         }
 
