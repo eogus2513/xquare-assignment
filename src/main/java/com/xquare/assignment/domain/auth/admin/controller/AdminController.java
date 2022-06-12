@@ -1,16 +1,12 @@
 package com.xquare.assignment.domain.auth.admin.controller;
 
-import com.xquare.assignment.domain.auth.admin.service.AdminService;
+import com.xquare.assignment.domain.auth.admin.service.AdminAuthService;
+import com.xquare.assignment.domain.auth.admin.service.AdminReissueService;
 import com.xquare.assignment.domain.auth.common.BaseClient;
 import com.xquare.assignment.domain.auth.common.dto.request.SignInRequest;
 import com.xquare.assignment.domain.auth.common.dto.response.TokenResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -19,17 +15,18 @@ import javax.validation.Valid;
 @RestController
 public class AdminController implements BaseClient {
 
-    private final AdminService adminService;
+    private final AdminAuthService adminAuthService;
+    private final AdminReissueService adminReissueService;
 
     @Override
     @PostMapping("/token")
     public TokenResponse signIn(@RequestBody @Valid SignInRequest request) {
-        return adminService.signIn(request);
+        return adminAuthService.adminAuth(request);
     }
 
     @Override
     @PatchMapping("/token")
     public TokenResponse reissue(@RequestHeader("Refresh-Token") String refreshToken) {
-        return adminService.reIssue(refreshToken);
+        return adminReissueService.adminReissue(refreshToken);
     }
 }
