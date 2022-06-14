@@ -4,12 +4,11 @@ import com.xquare.assignment.domain.auth.common.domain.RefreshToken;
 import com.xquare.assignment.domain.auth.common.domain.Role;
 import com.xquare.assignment.domain.auth.common.domain.repository.RefreshTokenRepository;
 import com.xquare.assignment.domain.auth.common.dto.response.TokenResponse;
-import com.xquare.assignment.global.exception.ExpiredJWTException;
-import com.xquare.assignment.global.exception.InvalidJWTException;
-import com.xquare.assignment.global.exception.SignatureJWTException;
+import com.xquare.assignment.global.exception.ExpiredJwtException;
+import com.xquare.assignment.global.exception.InvalidJwtException;
+import com.xquare.assignment.global.exception.SignatureJwtException;
 import com.xquare.assignment.global.security.auth.AuthDetailsService;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
@@ -88,11 +87,11 @@ public class JwtTokenProvider {
             return Jwts.parser().setSigningKey(jwtProperty.getSecret())
                     .parseClaimsJws(token).getBody();
         } catch (SignatureException e) {
-            throw SignatureJWTException.EXCEPTION;
-        } catch (ExpiredJwtException e) {
-            throw ExpiredJWTException.EXCEPTION;
+            throw SignatureJwtException.EXCEPTION;
+        } catch (io.jsonwebtoken.ExpiredJwtException e) {
+            throw ExpiredJwtException.EXCEPTION;
         } catch (Exception e) {
-            throw InvalidJWTException.EXCEPTION;
+            throw InvalidJwtException.EXCEPTION;
         }
     }
 }

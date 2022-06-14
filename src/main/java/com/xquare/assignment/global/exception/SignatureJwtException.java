@@ -3,12 +3,12 @@ package com.xquare.assignment.global.exception;
 import com.xquare.assignment.global.error.CustomException;
 import com.xquare.assignment.global.error.ErrorCode;
 
-public class InvalidJWTException extends CustomException {
+public class SignatureJwtException extends CustomException {
 
     public static final CustomException EXCEPTION =
-            new InvalidJWTException();
+            new SignatureJwtException();
 
-    private InvalidJWTException() {
-        super(ErrorCode.INVALID_JWT);
+    private SignatureJwtException() {
+        super(ErrorCode.SIGNATURE_JWT);
     }
 }
